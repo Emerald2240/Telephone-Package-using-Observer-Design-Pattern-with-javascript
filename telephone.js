@@ -5,6 +5,7 @@ class Telephone {
         this.observers = new Set;
     }
 
+    //Adds a new phone number to contacts list. Checks for duplicates to make sure.
     addPhoneNumber(phone, name) {
         let oldPhone = this.searchForContact(phone);
         let oldName = this.searchForContact(name);
@@ -18,6 +19,7 @@ class Telephone {
         console.log()
     }
 
+    //Removes specified phone number from contacts list.
     removePhoneNumber(contactNameOrPhone) {
         let contactInfo = this.searchForContact(contactNameOrPhone);
         let newArray = [];
@@ -39,6 +41,7 @@ class Telephone {
         }
     }
 
+    //Adds an observer to te list of observers. Makes sure the observers do some specified tasks before being added. It uses a Set datatype, so there cannot be duplicates.
     addObserver(observer) {
         if (observer.initiatePhoneCall || observer.displayContactInfo) {
             this.observers.add(observer)
@@ -48,11 +51,12 @@ class Telephone {
 
     }
 
+    //Removes observer from list of observers
     removeObserver(observer) {
         this.observers.delete(observer)
     }
 
-    //Observer Notifier
+    //One of the Observer Notifiers. This one in particular calls the observer in charge of phone calls
     dialPhoneNumber(contactNameOrPhone) {
         let contactInfo = this.searchForContact(contactNameOrPhone);
         if (!contactInfo) {
@@ -75,7 +79,7 @@ class Telephone {
         console.log();
     }
 
-    //Observer Notifier
+    //Another One of the Observer Notifiers. This one in particular calls the observer that displays contact information to the user.
     showContactInfo(contactNameOrPhone) {
         let contactInfo = this.searchForContact(contactNameOrPhone);
         if (!contactInfo) {
@@ -89,10 +93,12 @@ class Telephone {
         }
     }
 
+    //Returns the contact list
     getAllContacts() {
         return this.contacts;
     }
 
+    //Searches for a particular contact in the contact list, using their name or phone number.
     searchForContact(nameOrPhone) {
         for (let i = 0; i < this.contacts.length; i++) {
             let name = this.contacts[i].getName();
@@ -104,6 +110,7 @@ class Telephone {
         return false;
     }
 }
+
 
 class Contact {
     #name;
@@ -177,10 +184,6 @@ iphone.addObserver(iphoneContactInfoObserver);
 // iphone.removePhoneNumber(180);
 // iphone.removePhoneNumber('MTN');
 
-iphone.dialPhoneNumber('180');
+iphone.dialPhoneNumber('Annastecia');
 // iphone.showContactInfo('MTN');
-
-
-
-
 //#endregion
